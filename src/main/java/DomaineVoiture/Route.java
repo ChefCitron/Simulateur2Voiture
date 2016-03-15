@@ -17,4 +17,16 @@ public class Route {
         finy = y2;
     }
 
+    public int getxDeb(){
+        return debx;
+    }
+    public int getyDeb(){
+        return deby;
+    }
+    public int getxFin(){
+        return finx;
+    }
+    public int getyFin(){
+        return finy;
+    }
 }
