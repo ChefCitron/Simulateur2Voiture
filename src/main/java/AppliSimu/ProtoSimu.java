@@ -18,7 +18,7 @@ public class ProtoSimu {
 		
 		Timer timerAvancer = new Timer(dureeUneSecondeEnMilliSecondes, new ActionListener() {
 			
-			@Override
+			//@Override
 			public void actionPerformed(ActionEvent arg0) {
 				maVoiture.miseAJourPosition();
 			}

@@ -35,7 +35,7 @@ public class CommandeVoiture extends JPanel implements ActionListener{
 	}
 
 
-	@Override
+	//@Override
 	public void actionPerformed(ActionEvent event) {
 		Object bouton = event.getSource();
 		if (bouton == boutonAccelerer)
