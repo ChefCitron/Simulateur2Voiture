@@ -1,20 +1,20 @@
-package DomaineVoiture;
+package domaineVoiture;
 
 /**
  * Created by flori on 15/03/2016.
  */
 public class Route {
+
     private int debx;
     private int deby;
-    private int finx;
-    private int finy;
+    private int longueur;
+    private int largeur;
 
-
-    public Route(int x, int y, int x2, int y2) {
-        debx = x;
-        deby = y;
-        finx = x2;
-        finy = y2;
+    public Route(int _x, int _y, int _longueur, int _largeur) {
+        debx = _x;
+        deby = _y;
+        this.longueur = _longueur;
+        largeur = _largeur;
     }
 
     public int getxDeb(){
@@ -23,10 +23,8 @@ public class Route {
     public int getyDeb(){
         return deby;
     }
-    public int getxFin(){
-        return finx;
+    public int getLongueur(){
+        return longueur;
     }
-    public int getyFin(){
-        return finy;
-    }
+    public int getLargeur() { return largeur; }
 }

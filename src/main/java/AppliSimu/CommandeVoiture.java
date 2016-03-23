@@ -1,4 +1,4 @@
-package AppliSimu;
+package applisimu;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -8,41 +8,53 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import DomaineVoiture.Voiture;
+import domaineVoiture.Voiture;
 
-public class CommandeVoiture extends JPanel implements ActionListener{
-	
+/**
+ * javadoc a venir.
+ */
+public class CommandeVoiture extends JPanel implements ActionListener {
+	/**
+	 * javadoc a venir.
+	 */
 	private JButton boutonAccelerer;
+	/**
+	 * javadoc a venir.
+	 */
 	private JButton boutonInverserDirection;
+	/**
+	 * javadoc a venir.
+	 */
 	private Voiture maVoiture;
-	
-	
-	public CommandeVoiture (JFrame fenetre, Voiture maVoiture) {
-		
+
+	/**
+	 * Constructeur.
+	 * @param fenetre la fenetre d'affichage
+	 * @param pmaVoiture la voiture
+     */
+	public CommandeVoiture(final JFrame fenetre, final Voiture pmaVoiture) {
 		super();
 		this.setLayout(new FlowLayout());
- 
 		boutonAccelerer = new JButton("Accelerer");
 		boutonAccelerer.addActionListener(this);
 		this.add(boutonAccelerer);
-
 		boutonInverserDirection = new JButton("Changer direction");
 		boutonInverserDirection.addActionListener(this);
 		this.add(boutonInverserDirection);
-		
 		fenetre.add(this);
-		this.maVoiture = maVoiture;
+		this.maVoiture = pmaVoiture;
 	}
 
-
-	//@Override
-	public void actionPerformed(ActionEvent event) {
+	/**
+	 * Methode d'action.
+	 * @param event l'evenement
+     */
+	public final void actionPerformed(final ActionEvent event) {
 		Object bouton = event.getSource();
-		if (bouton == boutonAccelerer)
+		if (bouton == boutonAccelerer) {
 			maVoiture.accelerer();
-		else
+		} else {
 			maVoiture.inverserDirection();
+		}
 	}
-	
-
 }

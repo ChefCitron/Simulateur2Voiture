@@ -1,4 +1,4 @@
-package DomaineVoiture;
+package domaineVoiture;
 
 import java.util.Observable;
 

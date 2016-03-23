@@ -1,63 +1,109 @@
-package AppliSimu;
+package applisimu;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import DomaineVoiture.Route;
+import domaineVoiture.Route;
 
-import javax.swing.*;
+import domaineVoiture.Voiture;
 
-import DomaineVoiture.Voiture;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
-public class IHMVoiture extends JFrame implements Observer{
+/**
+ * declaration classe.
+ */
+public class IHMVoiture extends JFrame implements Observer {
+  /**
+   * .
+   */
+	private static final double PARAMATRE_CONVERSION_METRES_PIXELS = 0.5;
+  /**
+   * .
+   */
+  private static final int WINDOW_SIZE = 505;
+  /**
+   * .
+   */
+  private static final int Y_RECT = 300;
+  /**
+   * .
+   */
+  private static final int LONG_RECT = 30;
+  /**
+   * .
+   */
+  private static final int LARG_RECT = 15;
 
-	private double paramatreConversionMetresPixels = 0.5;
-	private Voiture maVoiture;
-	private ArrayList<Route> mesRoutes;
-	private CommandeVoiture maCommandeVoiture;
-	
+  /**
+   * .
+   */
+  private Voiture maVoiture;
+  /**
+   * .
+   */
+  private ArrayList<Route> mesRoutes;
+  /**
+   * .
+   */
+  private CommandeVoiture maCommandeVoiture;
+
+  /**
+   * .
+   */
 	private void initGraphique() {
 		this.setTitle("Simulateur de Voiture");
-		this.setSize(505, 505);
+		this.setSize(WINDOW_SIZE, WINDOW_SIZE);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
 		this.maCommandeVoiture = new CommandeVoiture(this, maVoiture);
-
 		this.setVisible(true);
 	}
-	
-	public IHMVoiture(Voiture maVoiture, ArrayList<Route> mesRoutes) {
+
+  /**
+   * .
+   * @param pmaVoiture .
+   * @param pmesRoutes .
+   */
+	public IHMVoiture(final Voiture pmaVoiture,
+                    final ArrayList<Route> pmesRoutes) {
 		super();
-		this.mesRoutes = mesRoutes;
-		this.maVoiture = maVoiture;
+		this.mesRoutes = pmesRoutes;
+		this.maVoiture = pmaVoiture;
 		maVoiture.addObserver(this);
 		initGraphique();
 	}
 
+  /**
+   * .
+   */
 	public IHMVoiture() {
 		super();
 		initGraphique();
 		this.maVoiture = null;
 		this.mesRoutes = null;
 	}
-	
-	public int calculerPositionPixels(int xMetres) {
-		return (int) (paramatreConversionMetresPixels * xMetres);	
+
+  /**
+   * @param xMetres .
+   * @return .
+   */
+	public int calculerPositionPixels(final int xMetres) {
+		return (int) (PARAMATRE_CONVERSION_METRES_PIXELS * xMetres);
 	}
 
-	//@Override
-	public void update(Observable arg0, Object arg1) {
+  /**
+   * .
+   * @param arg0
+   * @param arg1
+   */
+	public void update(final Observable arg0, final Object arg1) {
 		this.repaint();
 	}
 
 	@Override
-	public void paint(Graphics contexteGraphique) {
+	public final void paint(final Graphics contexteGraphique) {
 		super.paint(contexteGraphique);
 		contexteGraphique.setColor(Color.LIGHT_GRAY);
 		dessinerRoute(contexteGraphique);
@@ -65,19 +111,26 @@ public class IHMVoiture extends JFrame implements Observer{
 		dessinerVoiture(contexteGraphique);
 	}
 
-	private void dessinerRoute(Graphics contexteGraphique){
-		for(Route r : mesRoutes){
-		int xDeb = r.getxDeb();
-		int yDeb = r.getyDeb();
-		int xFin = r.getxFin();
-		int yFin = r.getyFin();
-		contexteGraphique.fillRect(xDeb,yDeb,xFin-xDeb,50);}
-		//contexteGraphique.fillRect(0,275,500,50);
+  /**
+   * @param contexteGraphique .
+   */
+	private void dessinerRoute(final Graphics contexteGraphique) {
+		for (Route r : mesRoutes) {
+			int xDeb = r.getxDeb();
+			int yDeb = r.getyDeb();
+			int longueur = r.getLongueur();
+			int largeur = r.getLargeur();
+			contexteGraphique.fillRect(xDeb, yDeb, longueur, largeur);
+		}
 	}
-	private void dessinerVoiture(Graphics contexteGraphique) {
+
+  /**
+   * @param contexteGraphique .
+   */
+	private void dessinerVoiture(final Graphics contexteGraphique) {
 		int xMetres = maVoiture.getX();
 		int xPixel = calculerPositionPixels(xMetres);
-		contexteGraphique.fillRect(xPixel, 300, 30, 15);
+		contexteGraphique.fillRect(xPixel,
+        Y_RECT, LONG_RECT, LARG_RECT);
 	}
-	
 }
