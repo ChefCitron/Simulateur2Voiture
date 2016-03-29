@@ -13,7 +13,7 @@ public class ProtoSimu {
 
 	public static void main(String[] args) {
 
-		final Voiture maVoiture = new Voiture (100, 100, 10);
+		final Voiture maVoiture = new Voiture (100, 200, 10);
 		IHMVoiture monTriangle = new IHMVoiture(maVoiture);
 		
 		Timer timerAvancer = new Timer(dureeUneSecondeEnMilliSecondes, new ActionListener() {

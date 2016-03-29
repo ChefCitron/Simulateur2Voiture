@@ -81,7 +81,7 @@ public class Voiture extends Observable {
     public int getY(){
         return y;
     }
-	public Object getDirection() {
+	public int getDirection() {
 	return directionEnDegres;
 	}
 
@@ -92,14 +92,15 @@ public class Voiture extends Observable {
         return (int) (paramatreConversionMetresPixels * yMetres);
     }
     public void tournerDroite() {
-        int angle = (this.directionEnDegres+270 )% 360;
+        int angle = (this.directionEnDegres+90 )% 360;
         System.out.println(angle);
         this.setDirection(angle);
         notificationObservateur();
     }
     public void tournerGauche() {
-        int angle = (this.directionEnDegres+90 )% 360;
+        int angle = (this.directionEnDegres+270 )% 360;
         this.setDirection(angle);
+
         notificationObservateur();
     }
 

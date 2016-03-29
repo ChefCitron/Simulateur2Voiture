@@ -82,11 +82,11 @@ public class TestVoiture {
     public void testTournerDroite() {
         assertEquals("L'angle doit être de 0 ",0,maVoiture.getDirection());
         maVoiture.tournerDroite();
-        assertEquals("L'angle doit être de 270 ",270,maVoiture.getDirection());
+        assertEquals("L'angle doit être de 90 ",90,maVoiture.getDirection());
         maVoiture.tournerDroite();
         assertEquals("L'angle doit être de 180 ",180,maVoiture.getDirection());
         maVoiture.tournerDroite();
-        assertEquals("L'angle doit être de 90 ",90,maVoiture.getDirection());
+        assertEquals("L'angle doit être de 270 ",270,maVoiture.getDirection());
         maVoiture.tournerDroite();
         assertEquals("L'angle doit être de 0 ",0,maVoiture.getDirection());
 
@@ -96,11 +96,11 @@ public class TestVoiture {
     public void testTournerGauche() {
         assertEquals("L'angle doit être de 0 ",0,maVoiture.getDirection());
         maVoiture.tournerGauche();
-        assertEquals("L'angle doit être de 90 ",90,maVoiture.getDirection());
+        assertEquals("L'angle doit être de 270 ",270,maVoiture.getDirection());
         maVoiture.tournerGauche();
         assertEquals("L'angle doit être de 180 ",180,maVoiture.getDirection());
         maVoiture.tournerGauche();
-        assertEquals("L'angle doit être de 270 ",270,maVoiture.getDirection());
+        assertEquals("L'angle doit être de 90 ",90,maVoiture.getDirection());
         maVoiture.tournerGauche();
         assertEquals("L'angle doit être de 0 ",0,maVoiture.getDirection());
 
@@ -113,7 +113,7 @@ public class TestVoiture {
         assertEquals("le Y doit être de 50",50,maVoiture.getY());
         maVoiture.tournerDroite();
         maVoiture.miseAJourPosition();
-        assertEquals("le Y doit être de 40",40,maVoiture.getY());
+        assertEquals("le Y doit être de 60",60,maVoiture.getY());
     }
 
     @Test
@@ -123,6 +123,7 @@ public class TestVoiture {
         assertEquals("le Y doit être de 50",50,maVoiture.getY());
         maVoiture.tournerGauche();
         maVoiture.miseAJourPosition();
-        assertEquals("le Y doit être de 60",60,maVoiture.getY());
+        assertEquals("le Y doit être de 40",40,maVoiture.getY());
     }
+
 }
