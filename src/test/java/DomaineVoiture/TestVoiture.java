@@ -12,7 +12,7 @@ public class TestVoiture {
 	
 	@Before
 	public void setUp(){
-		maVoiture = new Voiture (100, 0, 10);
+		maVoiture = new Voiture (100, 50, 10);
 	}
 	
 	@Test
@@ -30,7 +30,8 @@ public class TestVoiture {
 		
 		assertEquals(20, maVoiture.getVitesse());
 	}
-	
+
+
 	@Test
 	public void testAccelerationLimite() {
 		
@@ -77,5 +78,51 @@ public class TestVoiture {
 		assertEquals(0, maVoiture.getX());
 		
 	}
-	
+    @Test
+    public void testTournerDroite() {
+        assertEquals("L'angle doit être de 0 ",0,maVoiture.getDirection());
+        maVoiture.tournerDroite();
+        assertEquals("L'angle doit être de 270 ",270,maVoiture.getDirection());
+        maVoiture.tournerDroite();
+        assertEquals("L'angle doit être de 180 ",180,maVoiture.getDirection());
+        maVoiture.tournerDroite();
+        assertEquals("L'angle doit être de 90 ",90,maVoiture.getDirection());
+        maVoiture.tournerDroite();
+        assertEquals("L'angle doit être de 0 ",0,maVoiture.getDirection());
+
+    }
+
+    @Test
+    public void testTournerGauche() {
+        assertEquals("L'angle doit être de 0 ",0,maVoiture.getDirection());
+        maVoiture.tournerGauche();
+        assertEquals("L'angle doit être de 90 ",90,maVoiture.getDirection());
+        maVoiture.tournerGauche();
+        assertEquals("L'angle doit être de 180 ",180,maVoiture.getDirection());
+        maVoiture.tournerGauche();
+        assertEquals("L'angle doit être de 270 ",270,maVoiture.getDirection());
+        maVoiture.tournerGauche();
+        assertEquals("L'angle doit être de 0 ",0,maVoiture.getDirection());
+
+    }
+
+    @Test
+    public void testDeplacementVerticalBas(){
+        assertEquals("le Y doit être de 50",50,maVoiture.getY());
+        maVoiture.miseAJourPosition();
+        assertEquals("le Y doit être de 50",50,maVoiture.getY());
+        maVoiture.tournerDroite();
+        maVoiture.miseAJourPosition();
+        assertEquals("le Y doit être de 40",40,maVoiture.getY());
+    }
+
+    @Test
+    public void testDeplacementVerticalHaut(){
+        assertEquals("le Y doit être de 50",50,maVoiture.getY());
+        maVoiture.miseAJourPosition();
+        assertEquals("le Y doit être de 50",50,maVoiture.getY());
+        maVoiture.tournerGauche();
+        maVoiture.miseAJourPosition();
+        assertEquals("le Y doit être de 60",60,maVoiture.getY());
+    }
 }

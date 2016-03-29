@@ -36,7 +36,6 @@ public class CommandeVoiture extends JPanel implements ActionListener{
 		boutonInverserDirection = new JButton("Changer direction");
 		boutonInverserDirection.addActionListener(this);
 		this.add(boutonInverserDirection);
-		
 		fenetre.add(this);
 		this.maVoiture = maVoiture;
 	}

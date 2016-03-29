@@ -18,7 +18,7 @@ import DomaineVoiture.Voiture;
 
 public class IHMVoiture extends JFrame implements Observer{
 
-	private double paramatreConversionMetresPixels = 0.5;
+
 	private Voiture maVoiture;
 	private CommandeVoiture maCommandeVoiture;
 	
@@ -43,10 +43,6 @@ public class IHMVoiture extends JFrame implements Observer{
 		initGraphique();
 		this.maVoiture = null;
 	}
-	
-	public int calculerPositionPixels(int xMetres) {
-		return (int) (paramatreConversionMetresPixels * xMetres);	
-	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
@@ -63,8 +59,10 @@ public class IHMVoiture extends JFrame implements Observer{
 
 	private void dessinerVoiture(Graphics contexteGraphique) {
 		int xMetres = maVoiture.getX();
-		int xPixel = calculerPositionPixels(xMetres);
-		contexteGraphique.fillRect(xPixel, 300, 30, 15);
+        int yMetres = maVoiture.getY();
+		int xPixel = maVoiture.calculerPositionPixels(xMetres);
+        int yPixel = maVoiture.calculerPositionYPixels(yMetres);
+		contexteGraphique.fillRect(xPixel, yPixel, 30, 15);
 	}
 	
 }

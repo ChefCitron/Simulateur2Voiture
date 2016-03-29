@@ -4,6 +4,7 @@ import java.util.Observable;
 
 public class Voiture extends Observable {
 
+    private double paramatreConversionMetresPixels = 0.5;
 	private int x;
 	private int y;
 	private int vitesseMetreSeconde;
@@ -18,21 +19,34 @@ public class Voiture extends Observable {
 
 	public void miseAJourPosition() {
 		miseAJourPositionX();
+        miseAJourPositionY();
 		notificationObservateur();
 	}
 
 	private void miseAJourPositionX() {
-		if (directionEnDegres == 0)
-			x += vitesseMetreSeconde;
-		else
-			x -= vitesseMetreSeconde;
-		
+		if (directionEnDegres == 0) {
+            x += vitesseMetreSeconde;
+        }
+		else if(directionEnDegres == 180) {
+            x -= vitesseMetreSeconde;
+        }
 		if (x > 1000)
 			x = 1000;
 		else if (x < 0)
 			x = 0;
 	}
-
+    private void miseAJourPositionY() {
+        if(directionEnDegres == 90) {
+            y += vitesseMetreSeconde;
+        }
+        if(directionEnDegres == 270) {
+            y -= vitesseMetreSeconde;
+        }
+        if (y > 1000)
+            y = 1000;
+        else if (y < 0)
+            y = 0;
+    }
 	private void notificationObservateur() {
 		this.setChanged();
 		this.notifyObservers();
@@ -61,20 +75,32 @@ public class Voiture extends Observable {
 	}
 
 	public void inverserDirection() {
-		directionEnDegres +=180 ;
+		directionEnDegres += 180 ;
 		directionEnDegres = directionEnDegres % 360;
-		
 	}
-
+    public int getY(){
+        return y;
+    }
 	public Object getDirection() {
 	return directionEnDegres;
 	}
 
+    public int calculerPositionPixels(int xMetres) {
+        return (int) (paramatreConversionMetresPixels * xMetres);
+    }
+    public int calculerPositionYPixels(int yMetres) {
+        return (int) (paramatreConversionMetresPixels * yMetres);
+    }
     public void tournerDroite() {
-        this.setDirection(this.directionEnDegres-90);
+        int angle = (this.directionEnDegres+270 )% 360;
+        System.out.println(angle);
+        this.setDirection(angle);
+        notificationObservateur();
     }
     public void tournerGauche() {
-        this.setDirection(this.directionEnDegres+90);
+        int angle = (this.directionEnDegres+90 )% 360;
+        this.setDirection(angle);
+        notificationObservateur();
     }
 
 }
