@@ -70,5 +70,11 @@ public class Voiture extends Observable {
 	return directionEnDegres;
 	}
 
-	
+    public void tournerDroite() {
+        this.setDirection(this.directionEnDegres-90);
+    }
+    public void tournerGauche() {
+        this.setDirection(this.directionEnDegres+90);
+    }
+
 }
